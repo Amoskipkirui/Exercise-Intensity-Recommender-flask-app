@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercise Intensity Results</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='Ryan _ Nike Dunes.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-color: grey;
+        }
+        h1 {
+            margin-top: 15px;
+            margin-bottom: 30px;
+            color: blueviolet;
+            text-align: center;
+        }
+        label {
+            color: white;
+        }
+        .frame {
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .predicted-intensity {
+            background-color: black;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+        }
+        .back-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercise Intensity Results</h1>
+
+    <div class="frame">
+        <div id="results-container">
+            <p id="predicted-intensity" class="predicted-intensity"></p>
+            <p id="intensity-description"></p>
+            <p id="max-heart-rate"></p>
+        </div>
+        
+        <div class="back-button">
+            <button onclick="goBack()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        const response = JSON.parse('{{ response|tojson }}');
+
+        const predictedIntensityElement = document.getElementById('predicted-intensity');
+        predictedIntensityElement.textContent = 'Predicted Intensity: ' + response.intensity;
+
+        const intensityDescriptionElement = document.getElementById('intensity-description');
+        intensityDescriptionElement.textContent = 'Description: ' + response.description;
+
+        const maxHeartRateElement = document.getElementById('max-heart-rate');
+        maxHeartRateElement.textContent = 'Maximum Heart Rate: ' + response.heart_rate;
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

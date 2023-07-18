@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercise Intensity Recommender</title>
+    <style>
+        body {
+            background-size: cover;
+            background-image: url("static/9 Battle Ropes Exercises to Build Muscular Arms - Onnit Academy.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-color: grey;
+        }
+        h1 {
+            margin-top: 10px;
+            margin-bottom: 30px;
+            color: white;
+            text-align: center;
+        }
+        label {
+            color: black;
+            margin-bottom: 5px;
+        }
+        .frame {
+            width: 500px;
+            height: auto;
+            border: 1px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto 0;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 5px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .column-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .column-container .column {
+            width: calc(50% - 10px);
+        }
+        .column-container .column:last-child {
+            align-self: flex-end;
+        }
+        .calories-toolkit {
+            margin-top: 20px;
+        }
+        .calories-toolkit h2 {
+            margin-top: 0;
+        }
+        .calories-toolkit p {
+            margin-bottom: 10px;
+        }
+        .calories-toolkit a {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercise Intensity Recommender</h1>
+    <div class="frame">
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="column-container">
+                <div class="column">
+                    <div class="form-group">
+                        <label for="gender">Enter your Gender</label>
+                        <select id="gender" name="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Enter your Age</label>
+                        <input type="number" id="age" name="age" step="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dream_weight">Enter your Dream Weight</label>
+                        <input type="number" id="dream_weight" name="dream_weight" step="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="actual_weight">Enter your Actual Weight</label>
+                        <input type="number" id="actual_weight" name="actual_weight" step="1" required>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="form-group">
+                        <label for="height">Enter your Height in meters</label>
+                        <input type="number" id="height" name="height" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weather_conditions">Suitable training Weather Conditions</label>
+                        <select id="weather_conditions" name="weather_conditions">
+                            <option value="Sunny">Sunny</option>
+                            <option value="Cloudy">Cloudy</option>
+                            <option value="Rainy">Rainy</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calorie_range">Select your desired Calories to burn</label>
+                        <select id="calorie_range" name="calorie_range">
+                            <option value="100 and Below">100 and Below</option>
+                            <option value="101 to 200">101 to 200</option>
+                            <option value="201 to 300">201 to 300</option>
+                            <option value="301 to 400">301 to 400</option>
+                            <option value="401 to 500">401 to 500</option>
+                            <option value="501 to 600">501 to 600</option>
+                            <option value="601 to 700">601 to 700</option>
+                            <option value="701 to 800">701 to 800</option>
+                            <option value="801 and Above">801 and Above</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duration">Training session duration (minutes)</label>
+                        <input type="number" id="duration" name="duration" step="1" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Predict">
+            </div>
+        </form>
+
+        <div class="calories-toolkit">
+            <h2>Calories Toolkit</h2>
+            <p>Calories refer to the amount of energy derived from food that is required to perform physical activities.</p>
+            <p>Not sure how many calories to burn? Click <a href="https://www.calculator.net/calories-burned-calculator.html" target="_blank">here</a> to use a calories calculator.</p>
+        </div>
+    </div>
+</body>
+</html>
